@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\TicketController;
+use App\Http\Controllers\Api\ProfilController;
 use Illuminate\Support\Facades\Route;
 
 // Public API routes
@@ -21,4 +22,8 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/tickets/{id}/complete', [TicketController::class , 'complete']);
     Route::get('/tickets/history', [TicketController::class , 'history']);
     Route::get('/tickets/{id}', [TicketController::class , 'show']);
+
+    // Profile 
+    Route::get('/profile',  [ProfilController::class, 'show']);
+    Route::put('/profile',  [ProfilController::class, 'update']);
 });

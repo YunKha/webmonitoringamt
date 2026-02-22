@@ -34,6 +34,14 @@ class User extends Authenticatable
         ];
     }
 
+    protected $appends = ['total_deliveries'];
+
+    public function getTotalDeliveriesAttribute(): int{
+        return $this->tickets()
+            ->where('status', 'completed')
+            ->count();
+    }
+
     public function isAdmin(): bool
     {
         return $this->role === 'admin';

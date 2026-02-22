@@ -139,8 +139,8 @@ class TicketController extends Controller
         try {
             // Validasi input - sesuai dengan nama field dari Android
             $validated = $request->validate([
-                'nama_sopir'    => 'required|string|max:255',
-                'nomor_karnet'  => 'required|string|max:100',
+                'driver_name'    => 'required|string|max:255',
+                'karnet_number'  => 'required|string|max:100',
                 'photo'         => 'required|image|mimes:jpeg,jpg,png|max:5120', // max 5MB
                 'latitude'      => 'required|numeric',
                 'longitude'     => 'required|numeric',
@@ -159,8 +159,8 @@ class TicketController extends Controller
                 $ticket->update([
                     'status'        => 'in_progress',
                     'driver_id'     => $request->user()->id,
-                    'driver_name'   => $validated['nama_sopir'],
-                    'karnet_number' => $validated['nomor_karnet'],
+                    'driver_name'   => $request->driver_name,   // bukan $request->nama_sopir
+                    'karnet_number' => $request->karnet_number, // bukan $request->nomor_karnet
                     'taken_at'      => now(),
                 ]);
 
