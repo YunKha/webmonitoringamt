@@ -144,7 +144,7 @@ class TicketController extends Controller
                 'photo'         => 'required|image|mimes:jpeg,jpg,png|max:5120', // max 5MB
                 'latitude'      => 'required|numeric',
                 'longitude'     => 'required|numeric',
-                'taken_at'      => 'nullable|string', // Android mengirim sebagai string
+                'taken_at'      => 'nullable|string',
             ]);
 
             // Cari tiket yang available
@@ -159,8 +159,8 @@ class TicketController extends Controller
                 $ticket->update([
                     'status'        => 'in_progress',
                     'driver_id'     => $request->user()->id,
-                    'driver_name'   => $request->driver_name,   // bukan $request->nama_sopir
-                    'karnet_number' => $request->karnet_number, // bukan $request->nomor_karnet
+                    'driver_name'   => $request->driver_name,   
+                    'karnet_number' => $request->karnet_number,
                     'taken_at'      => now(),
                 ]);
 
